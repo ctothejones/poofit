@@ -1,0 +1,48 @@
+# Example table for a typical Book model.
+#
+# Book:
+#   - title: string
+#   - price: integer
+#   - author: string
+#   - summary: text
+#   - hardcover: boolean
+#
+# Follow the syntax exactly (colons and spacing are important).
+# Column type choices are: string, text, integer, and boolean.
+# You can have as many models as you want in this file.
+
+
+Team:
+  - name: string
+  - league_id: integer
+
+League:
+  - name: string
+  - company_id: integer
+
+Company:
+  - name: string
+
+Activity:
+  - category: string
+  - category_weight: integer
+  - user_id: integer
+
+Season:
+  - league_id: integer
+  - start_date: date
+  - end_date: date
+  - number: integer
+
+Week:
+  - start_date: date
+  - end_date: date
+  - season_id: integer
+  - number: integer
+
+Matchup:
+  - first_team_id: integer
+  - second_team_id: integer
+  - week_id: integer
+  - winner: integer
+  - season_id: integer

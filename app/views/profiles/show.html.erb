@@ -1,0 +1,5 @@
+<h3><%= @user.name %></h3>
+<h4><%= @user.title %></h4>
+<h4><%= @user.company.name %></h4>
+<h4>Team: <%= link_to "#{@team.name}", "/teams/#{@user.team.id}" %></h4>
+<h4>League: <%= link_to "#{@league.name}", "/leagues/#{@team.league.id}" %></h4>

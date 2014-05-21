@@ -1,0 +1,37 @@
+<h1><%= @team.name %> <%= @win_count %>-<%= @loss_count %></h1>
+<%= link_to "#{@league.name}", "/leagues/#{@league.id}" %>
+<h5>Rank:</h5>
+
+<ul>
+  <% @team_members.each do |member| %>
+    <li><%= link_to "#{member.name}", "/profiles/#{member.id}" %></li>
+  <% end %>
+</ul>
+
+<h5>Captain: <%= link_to "#{@captain.name}", "/profiles/#{@captain.id}" %></h5>
+
+<h5>Schedule:</h5>
+
+<table>
+  <tr>
+    <th>Week</th>
+    <th>Opponent</th>
+    <th>Result</th>
+  </tr>
+  <% @teams_matchups_this_season_in_order.each do |matchup| %>
+    <tr>
+      <td><%= Week.find(matchup.week_id).number %></td>
+      <% if matchup.first_team_id == @team.id %>
+        <td><%= link_to "#{Team.find(matchup.second_team_id).name}", "/teams/#{Team.find(matchup.second_team_id).id }" %></td>
+      <% else %>
+        <td><%= link_to "#{Team.find(matchup.first_team_id).name}", "/teams/#{Team.find(matchup.first_team_id).id }" %></td>
+      <% end %>
+      <% if matchup.winner == @team.id %>
+        <td>W</td>
+      <% else %>
+        <td>L</td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
