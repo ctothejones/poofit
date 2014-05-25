@@ -1,8 +1,7 @@
 class LeaguesController < ApplicationController
   def show
 
-    ##FIX##
-    @team = User.first.team
+    @team = current_user.team
 
     @league = League.find(params[:id])
     @company = @league.company

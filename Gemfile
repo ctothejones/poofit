@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'ez'
+# gem 'ez'
 gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

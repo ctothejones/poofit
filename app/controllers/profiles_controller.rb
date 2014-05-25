@@ -1,9 +1,8 @@
 class ProfilesController < ApplicationController
   def show
 
-    ##FIX##
-    @user = User.first
-    @team = User.first.team
+    @user = User.find(params[:id])
+    @team = @user.team
     @league = @team.league
 
   end
