@@ -16,16 +16,14 @@ Rails.application.routes.draw do
   post("/companies/create", { :controller => "companies", :action => "create" })
   get("/companies/:id", { :controller => "companies", :action => "show" })
   get("/companies/:id/edit", { :controller => "companies", :action => "edit" })
-  ## Change to put or patch and update form method ##
-  get("/companies/:id/update", { :controller => "companies", :action => "update" })
+  patch("/companies/:id/update", { :controller => "companies", :action => "update" })
 
   get("/leagues/new", { :controller => "leagues", :action => "new" })
   post("/leagues/create", { :controller => "leagues", :action => "create" })
   get("/leagues/index", { :controller => "leagues", :action => "index" })
   get("/leagues/:id", { :controller => "leagues", :action => "show" })
   get("/leagues/:id/edit", { :controller => "leagues", :action => "edit" })
-  ## Change to put or patch and update form method ##
-  get("/leagues/:id/update", { :controller => "leagues", :action => "update" })
+  patch("/leagues/:id/update", { :controller => "leagues", :action => "update" })
   delete("/leagues/:id/delete", { :controller => "leagues", :action => "destroy" })
 
 
