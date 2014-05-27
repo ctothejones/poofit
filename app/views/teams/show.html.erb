@@ -1,22 +1,70 @@
-<h1><%= @team.name %> <%= @win_count %>-<%= @loss_count %></h1>
-<%= link_to "#{@league.name}", "/leagues/#{@league.id}" %>
-<h5>Rank:</h5>
+<div class="row">
+  <div class="col-md-3 card">
+    <div class="card-image">
+      <!-- Change to include team image later -->
+      <img style="max-width:300px" src="http://www.myiconart.com/3222-thickbox/space-jam-retro-style-t-shirt-tune-squad.jpg">
+    </div>
+    <% if @win_count > @loss_count %>
+      <div class="team-card-winning">
+    <% else %>
+      <div class="team-card-losing">
+    <% end %>
+        <h3>
+          <%= @team.name %>
+          <span class="label label-info win-loss"><%= @win_count %>-<%= @loss_count %></span>
+        </h3>
+        <table class="table table-hover table-condensed">
+          <tr>
+            <td><i class="fa fa-anchor fa-lg"></i></td>
+            <td>
+              <dl>
+                <dt>Captain</dt>
+                <dd><%= link_to "#{@captain.name}", "/profiles/#{@captain.id}" %></dd>
+              </dl>
+            </td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-trophy fa-lg"></i></td>
+            <td>
+              <dl>
+                <dt>League</dt>
+                <dd><%= link_to "#{@league.name}", "/leagues/#{@league.id}" %></dd>
+              </dl>
+            </td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-building fa-lg"></i></td>
+            <td>
+              <dl>
+                <dt>Company</dt>
+                <dd><%= @company.name %></dd>
+              </dl>
+            </td>
+          </tr>
+        </table>
+      </div>
+  </div>
+  <div class="col-md-7 card">
+    <h3>Current Matchup</h3>
+    <table class="table table hover">
+      <% @team_members.each do |member| %>
+        <tr>
+        <td><%= link_to "#{member.name}", "/profiles/#{member.id}" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
-<ul>
-  <% @team_members.each do |member| %>
-    <li><%= link_to "#{member.name}", "/profiles/#{member.id}" %></li>
-  <% end %>
-</ul>
 
-<h5>Captain: <%= link_to "#{@captain.name}", "/profiles/#{@captain.id}" %></h5>
-
-<h5>Schedule:</h5>
+<h3><i class="fa fa-calendar"></i> Schedule:</h5>
 
 <table>
   <tr>
     <th>Week</th>
     <th>Opponent</th>
     <th>Result</th>
+    <th>MVP</th>
   </tr>
   <% @teams_matchups_this_season_in_order.each do |matchup| %>
     <tr>
@@ -31,6 +79,7 @@
       <% else %>
         <td>L</td>
       <% end %>
+        <td>Name + Pic</td>
     </tr>
   <% end %>
 </table>

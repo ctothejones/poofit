@@ -1,0 +1,10 @@
+<div class="col-md-3">
+<!-- change method to put or patch -->
+  <form role="form" action="/companies/<%= @company.id %>/update">
+    <div class="form-group">
+      <label for="name">Company Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="<%= @company.name %>">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>

@@ -1,4 +1,28 @@
 class LeaguesController < ApplicationController
+  def new
+    @league = League.new
+  end
+
+  def create
+    @league = League.new
+    @league.name = params[:name]
+    @league.company_id = current_user.company_id
+    @league.save
+
+    if @league.save
+      ## change redirect to league.id ##
+      redirect_to "/leagues/index", :notice => "League created successfully."
+    else
+      render 'new'
+    end
+  end
+
+  def index
+    @company = current_user.company
+    @all_leagues = @company.leagues
+
+  end
+
   def show
 
     @team = current_user.team
@@ -26,5 +50,30 @@ class LeaguesController < ApplicationController
 
     @weeks_in_season_count = @current_season.weeks.count
 
+  end
+
+  def edit
+    @league = League.find(params[:id])
+  end
+
+  def update
+    @league = League.find(params[:id])
+    @league.name = params[:name]
+
+    @league.save
+
+    if @league.save
+      ## Change redirect to league.id page ##
+      redirect_to "/leagues/index", :notice => "League updated successfully."
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @league = League.find(params[:id])
+    @league.destroy
+
+    redirect_to "/leagues/index", :notice => "League deleted"
   end
 end

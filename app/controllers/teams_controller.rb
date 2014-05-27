@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
     ##
     @captain = @team.captain
     @league = @team.league
+    @company = @league.company
     @seasons = @league.seasons
 
     @seasons.each do |season|

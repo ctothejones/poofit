@@ -1,0 +1,10 @@
+<div class="col-md-3">
+<!-- change method to put or patch -->
+  <form role="form" action="/leagues/<%= @league.id %>/update">
+    <div class="form-group">
+      <label for="name">League Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="<%= @league.name %>">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
