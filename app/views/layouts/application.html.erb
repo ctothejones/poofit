@@ -1,64 +1,72 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>Poofit</title>
+
+    <!-- Style Elements -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/styles.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+    <!-- Scripts -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <%= csrf_meta_tags %>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </head>
 
-  <body class="container">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-
-      <div class="navbar-header">
-        <a href="/"><img src="/poofit_logo_small.png" alt="Poofit logo"></a>
-      </div>
-      <div class="navbar navbar-links">
-        <ul class="nav navbar-nav">
-          <% if user_signed_in? %>
-            <li><a href="/leagues/<%= current_user.league.id %>">League</a></li>
-            <li><a href="/teams/<%= current_user.team.id %>">Team</a></li>
-          <% end %>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
-            <li><a href="/profiles/<%= current_user.id %>"><%= current_user.first_name %></a></li>
-            <li><a href="/users/sign_out" data-method="delete"><i class="fa fa-sign-out fa-lg"></i></a></li>
-          <% else %>
-            <li><a href="/users/sign_up">Sign up</a></li>
-            <li><a href="/users/sign_in">Sign in</a></li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
-
+  <body>
     <div class="container">
-      <% if notice.present? %>
-        <div class="alert alert-dismissable alert-success">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= notice %>
-        </div>
-      <% end %>
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
-      <% if alert.present? %>
-        <div class="alert alert-dismissable alert-warning">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= alert %>
+        <div class="navbar-header">
+          <a href="/"><img src="/poofit_logo_small.png" alt="Poofit logo"></a>
         </div>
-      <% end %>
+        <div class="navbar navbar-links">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li><a href="/leagues/<%= current_user.league.id %>">League</a></li>
+              <li><a href="/teams/<%= current_user.team.id %>">Team</a></li>
+            <% end %>
+          </ul>
 
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><a href="/profiles/<%= current_user.id %>"><%= current_user.first_name %></a></li>
+              <li><a href="/users/sign_out" data-method="delete"><i class="fa fa-sign-out fa-lg"></i></a></li>
+            <% else %>
+              <li><a href="/users/sign_up">Sign up</a></li>
+              <li><a href="/users/sign_in">Sign in</a></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container">
+        <% if notice.present? %>
+          <div class="alert alert-dismissable alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= notice %>
+          </div>
+        <% end %>
+
+        <% if alert.present? %>
+          <div class="alert alert-dismissable alert-warning">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= alert %>
+          </div>
+        <% end %>
+
+      </div>
+      <div style="padding-top: 40px">
+        <%= yield %>
+      </div>
     </div>
-
-    <%= yield %>
-
   </body>
 </html>
