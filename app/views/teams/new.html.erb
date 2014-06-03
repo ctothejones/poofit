@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-4">
+    <%= simple_form_for [@league, @team] do |f| %>
+      <%= f.hidden_field :league_id, :value => "#{params[:league_id]}" %>
+      <%= f.input :name %>
+      <%= f.button :submit, :class => "btn btn-success submit-btn" %>
+    <% end %>
+  </div>
+</div>

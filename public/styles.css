@@ -2,17 +2,14 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-nav{
+.navbar {
   height: 75px;
   padding: 10px;
 }
 
-.navbar-header{
-  margin-left: 50px;
-}
-
-.navbar-right{
-  margin-right: 50px;
+.navbar-brand {
+  position: relative;
+  bottom: 15px
 }
 
 body{
@@ -53,7 +50,8 @@ body{
   float: right;
 }
 
-
-
+.submit-btn {
+  float: right;
+}
 
 

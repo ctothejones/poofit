@@ -1,4 +1,23 @@
 class TeamsController < ApplicationController
+  def new
+    @team = Team.new
+    @league = League.find(params[:league_id])
+  end
+
+  def create
+    @team = Team.new
+    @team.name = params[:team][:name]
+    @team.league_id = params[:team][:league_id]
+
+    @team.save
+
+    if @team.save
+      redirect_to "/leagues/#{@team.league_id}/teams/#{@team.id}"
+    else
+      render "new"
+    end
+  end
+
   def show
 
     @team = Team.find(params[:id])

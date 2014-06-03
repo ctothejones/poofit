@@ -2,30 +2,25 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root("pages#index")
+  root "pages#index"
 
-  get("/profiles/:id", { :controller => "profiles", :action => "show" })
+  resources :users do
+    resources :activities
+  end
 
-  get("/teams/:id", { :controller => "teams", :action => "show" })
+  resources :companies do
+    resources :leagues
+  end
 
-  get("/matchups/:id", { :controller => "matchups", :action => "show" })
+  resources :leagues do
+    resources :seasons, :teams
+  end
 
+  resources :seasons do
+    resources :weeks
+  end
 
-
-  get("/companies/new", { :controller => "companies", :action => "new" })
-  post("/companies/create", { :controller => "companies", :action => "create" })
-  get("/companies/:id", { :controller => "companies", :action => "show" })
-  get("/companies/:id/edit", { :controller => "companies", :action => "edit" })
-  patch("/companies/:id/update", { :controller => "companies", :action => "update" })
-
-  get("/leagues/new", { :controller => "leagues", :action => "new" })
-  post("/leagues/create", { :controller => "leagues", :action => "create" })
-  get("/leagues/index", { :controller => "leagues", :action => "index" })
-  get("/leagues/:id", { :controller => "leagues", :action => "show" })
-  get("/leagues/:id/edit", { :controller => "leagues", :action => "edit" })
-  patch("/leagues/:id/update", { :controller => "leagues", :action => "update" })
-  delete("/leagues/:id/delete", { :controller => "leagues", :action => "destroy" })
-
+  resources :matchups
 
 
 

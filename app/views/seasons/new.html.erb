@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-4">
+    <%= simple_form_for @season do |f| %>
+      <%= f.hidden_field :league_id, :value => "#{params[:league_id]}" %>
+      <!-- insert calendar later -->
+      <%= f.input :start_date, :as => :string, :hint => "yyyy-mm-dd" %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>

@@ -1,14 +1,31 @@
 <h1><%= @league.name %></h1>
 <h5><%= @company.name %></h5>
 
+<!-- Commissioner privilege later -->
+<%= link_to "<i class='fa fa-plus'></i> Start a new season!".html_safe, "/leagues/#{@league.id}/seasons/new" %>
 
-<h3>Standings:</h3>
-<table>
-  <% @standings_hash.each do |team, wins| %>
-    <tr>
-      <td><%= link_to "#{team.name}", "/teams/#{team.id}" %></td>
-      <td><%= wins %>-<%= @weeks_in_season_count - wins %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row">
+    <div class="col-md-4">
+      <p class="lead">Standings for Season <%= @current_season.number %>:</p>
+        <table class="table table-hover">
+          <% @standings_hash.each do |team, wins| %>
+            <tr>
+              <td><%= link_to "#{team.name}", league_team_path(@league, team) %></td>
+              <td><%= wins %>-<%= @weeks_in_season_count - wins %></td>
+            </tr>
+          <% end %>
+        </table>
+    </div>
+</div>
+
+
+<% if @current_season %>
+  <p class="lead">This Season Schedule</p>
+  <ul>
+    <% @current_season.weeks.each do |week| %>
+      <li>Week <%= week.number %>, <%= week.start_date %>, </li>
+    <% end %>
+  </ul>
+<% end %>
+
 

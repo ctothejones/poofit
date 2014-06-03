@@ -5,13 +5,12 @@ class LeaguesController < ApplicationController
 
   def create
     @league = League.new
-    @league.name = params[:name]
+    @league.name = params[:league][:name]
     @league.company_id = current_user.company_id
     @league.save
 
     if @league.save
-      ## change redirect to league.id ##
-      redirect_to "/leagues/index", :notice => "League created successfully."
+      redirect_to "/leagues/#{@league.id}/seasons/new", :notice => "League created successfully."
     else
       render 'new'
     end
@@ -58,13 +57,13 @@ class LeaguesController < ApplicationController
 
   def update
     @league = League.find(params[:id])
-    @league.name = params[:name]
+    @league.name = params[:league][:name]
 
     @league.save
 
     if @league.save
       ## Change redirect to league.id page ##
-      redirect_to "/leagues/index", :notice => "League updated successfully."
+      redirect_to "/leagues", :notice => "League updated successfully."
     else
       render 'edit'
     end
@@ -74,6 +73,6 @@ class LeaguesController < ApplicationController
     @league = League.find(params[:id])
     @league.destroy
 
-    redirect_to "/leagues/index", :notice => "League deleted"
+    redirect_to "/leagues", :notice => "League deleted"
   end
 end

@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new
-    @company.name = params[:name]
+    @company.name = params[:company][:name]
     @company.save
 
     if @company.save
@@ -25,7 +25,7 @@ class CompaniesController < ApplicationController
 
   def update
     @company = Company.find(params[:id])
-    @company.name = params[:name]
+    @company.name = params[:company][:name]
 
     @company.save
 
