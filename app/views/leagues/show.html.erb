@@ -4,6 +4,8 @@
 <!-- Commissioner privilege later -->
 <%= link_to "<i class='fa fa-plus'></i> Start a new season!".html_safe, "/leagues/#{@league.id}/seasons/new" %>
 
+<%= @league.team_ids - [@league.team_ids.sample] %>
+
 <div class="row">
     <div class="col-md-4">
       <p class="lead">Standings for Season <%= @current_season.number %>:</p>
