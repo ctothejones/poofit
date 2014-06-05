@@ -10,6 +10,7 @@ class SeasonsController < ApplicationController
     @season.league_id = params[:season][:league_id]
     @season.start_date = params[:season][:start_date]
     @season.end_date = @season.start_date.advance :weeks => 12
+    @season.number = @league.seasons.count + 1
 
     @season.save
 

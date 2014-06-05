@@ -1,42 +1,30 @@
-<h1><%= @league.name %></h1>
-<h5><%= @company.name %></h5>
-
-<!-- Commissioner privilege later -->
-<%= link_to "<i class='fa fa-plus'></i> Start a new season!".html_safe, "/leagues/#{@league.id}/seasons/new" %>
-
-
 <div class="row">
-    <div class="col-md-4">
-      <p class="lead">Standings for Season <%= @current_season.number %>:</p>
-        <table class="table table-hover">
-          <% @league.teams.each do |team| %>
-            <tr>
-              <td><%= link_to "#{team.name}", league_team_path(@league, team) %></td>
-              <td><%= @league.seasons.first.matchups.where({ "winner" => team.id }).count %></td>
-            </tr>
-          <% end %>
-        </table>
+  <div class="col-md-4">
+    <h1><%= @league.name %></h1><a href="/leagues/<%= @league.id %>/edit">Edit</a>
+    <h5><%= @company.name %></h5>
+
+    <%= link_to "<i class='fa fa-plus'></i> Start a new season!".html_safe, "/leagues/#{@league.id}/seasons/new" %>
+  </div>
+
+
+  <% if @current_season %>
+    <div class="col-md-8">
+      <p class="lead">Season <%= @current_season.number %></p>
+
+      <p class="lead">Standings</p>
+      <table class="table table-hover">
+        <% @league.teams.each do |team| %>
+          <tr>
+            <td><%= link_to "#{team.name}", league_team_path(@league, team) %></td>
+            <td><%= @current_season.matchups.where({ :winner => team.id }).count %></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
+  <% end %>
 </div>
 
 
-<% if @current_season %>
-  <p class="lead">This Season Schedule</p>
-  <ul>
-    <% @current_season.weeks.each do |week| %>
-      <li>Week <%= week.number %>, <%= week.start_date %>, </li>
-    <% end %>
-  </ul>
-<% end %>
 
-
-<% @current_season.weeks.each do |week| %>
-  <p>Week <%= week.number %></p>
-  <% week.matchups.each do |matchup| %>
-    <li><%= Team.find(matchup.first_team_id).name %></li>
-    <li><%= Team.find(matchup.second_team_id).name %></li>
-    <li></li>
-  <% end %>
-<% end %>
 
 

@@ -90,3 +90,13 @@
   <% end %>
 </table>
 
+  <p class="lead">Schedule</p>
+  <% @current_season.weeks.each do |week| %>
+    <p>Week <%= week.number %></p>
+    <% week.matchups.each do |matchup| %>
+      <li><%= Team.find(matchup.first_team_id).name %></li>
+      <li><%= Team.find(matchup.second_team_id).name %></li>
+      <li></li>
+    <% end %>
+  <% end %>
+
