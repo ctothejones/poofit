@@ -1,5 +1,23 @@
-<div class="col-md-3">
-  <%= @company.name %>
-  <a href="/companies/<%= @company.id %>/edit">Edit</a>
-  <a href="/leagues/new"><i class='fa fa-plus'></i>Add a League</a>
+<div class="row">
+  <div class="col-md-4">
+    <h1><%= @company.name %></h1>
+    <a href="/companies/<%= @company.id %>/edit">Edit</a>
+  </div>
+  <div class="col-md-4">
+    <a href="/leagues/new"><i class='fa fa-plus'></i>Add a League</a>
+    <ul>
+      <% @company.leagues.each do |league| %>
+        <li><%= league.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <ul>
+      <% @company.users.each do |user| %>
+        <li><%= user.name %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
+
+
