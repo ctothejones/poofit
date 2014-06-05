@@ -28,7 +28,7 @@ class SeasonsController < ApplicationController
       week.save
     end
 
-    ## Creating Matchups - Must happen after teams are set _> DRY up into model later ##
+    ## Creating Matchups - Must happen after teams are set -> DRY up into model later ##
     @league = League.find(params[:season][:league_id])
     number_of_teams = @league.teams.count
     number_of_matchups_per_week = number_of_teams/2

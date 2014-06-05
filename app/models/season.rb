@@ -1,7 +1,7 @@
 class Season < ActiveRecord::Base
   belongs_to :league
   has_many :weeks
-  has_many :matchups
+  has_many :matchups, :through => :weeks
 
 
   def current

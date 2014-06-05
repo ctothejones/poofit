@@ -6,4 +6,5 @@ class Team < ActiveRecord::Base
   def captain
     users.find_by({ :is_captain => true })
   end
+
 end
