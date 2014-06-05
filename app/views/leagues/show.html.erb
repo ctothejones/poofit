@@ -4,16 +4,15 @@
 <!-- Commissioner privilege later -->
 <%= link_to "<i class='fa fa-plus'></i> Start a new season!".html_safe, "/leagues/#{@league.id}/seasons/new" %>
 
-<%= @league.team_ids - [@league.team_ids.sample] %>
 
 <div class="row">
     <div class="col-md-4">
       <p class="lead">Standings for Season <%= @current_season.number %>:</p>
         <table class="table table-hover">
-          <% @standings_hash.each do |team, wins| %>
+          <% @league.teams.each do |team| %>
             <tr>
               <td><%= link_to "#{team.name}", league_team_path(@league, team) %></td>
-              <td><%= wins %>-<%= @weeks_in_season_count - wins %></td>
+              <td><%= @league.seasons.first.matchups.where({ "winner" => team.id }).count %></td>
             </tr>
           <% end %>
         </table>
@@ -28,6 +27,16 @@
       <li>Week <%= week.number %>, <%= week.start_date %>, </li>
     <% end %>
   </ul>
+<% end %>
+
+
+<% @current_season.weeks.each do |week| %>
+  <p>Week <%= week.number %></p>
+  <% week.matchups.each do |matchup| %>
+    <li><%= Team.find(matchup.first_team_id).name %></li>
+    <li><%= Team.find(matchup.second_team_id).name %></li>
+    <li></li>
+  <% end %>
 <% end %>
 
 

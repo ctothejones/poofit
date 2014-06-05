@@ -27,57 +27,30 @@ class SeasonsController < ApplicationController
       week.save
     end
 
-    ## Creating Matchups - Must happen after teams are set ##
+    ## Creating Matchups - Must happen after teams are set _> DRY up into model later ##
     @league = League.find(params[:season][:league_id])
     number_of_teams = @league.teams.count
     number_of_matchups_per_week = number_of_teams/2
 
-    # @season.weeks.each do |week|
+    @season.weeks.each do |week|
+      shuffled_team_ids = @league.team_ids.shuffle
 
-    #   teams_with_matchups_this_week = []
+      number_of_matchups_per_week.times do |matchup|
+        matchup = Matchup.new
+        matchup.week_id = week.id
+        matchup.season_id = @season.id
 
-    #   number_of_matchups_per_week.times do |matchup|
-    #     matchup = Matchup.new
-    #     matchup.week_id = week.id
-    #     matchup.season_id = @season.id
+        random_team_1 = shuffled_team_ids.sample
+        matchup.first_team_id = random_team_1
+        shuffled_team_ids = shuffled_team_ids - [random_team_1]
 
-    #     random_team = @league.teams.sample
+        random_team_2 = shuffled_team_ids.sample
+        matchup.second_team_id = random_team_2
+        shuffled_team_ids = shuffled_team_ids - [random_team_2]
 
-    #     case random_team
-
-    #     when week.matchups.nil?
-    #       matchup.first_team_id = random_team.id
-    #       teams_with_matchups_this_week << random_team.id
-
-    #     when teams_with_matchups_this_week.include?(random_team.id)
-    #       if matchup.first_team_id || matchup.second_team_id == random_team.id
-    #         random_team = @league.teams.sample
-    #           #assign to team w/ if statements below
-    #       else
-
-
-    #     else
-    #       if matchup.first_team_id.present?
-    #         if matchup.first_team_id == random_team.id
-    #           random_team = @league.teams.sample
-    #         else
-    #           matchup.second_team_id = random_team.id
-    #         end
-    #       else
-    #         matchup.first_team_id = random_team.id
-    #       end
-    #     end
-
-    #     matchup.save
-    #   end
-
-    # end
-
-  # ## while loop? while any matchup in any week is lacking a team? ##
-  # # bye weeks if not even teams? Force even teams before season?
-  # # handle this with cron job on morning of start_date?
-  # @league.team_ids - [@league.team_ids.sample]
-
+        matchup.save
+      end
+    end
 
     if @season.save
       redirect_to "/leagues/#{@league.id}"

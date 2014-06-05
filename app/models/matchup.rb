@@ -10,7 +10,4 @@ class Matchup < ActiveRecord::Base
     Team.find(second_team_id)
   end
 
-  def winning_team
-    Team.find(winner)
-  end
 end

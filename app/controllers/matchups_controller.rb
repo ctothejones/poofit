@@ -4,4 +4,5 @@ class MatchupsController < ApplicationController
     @current_season = Season.where({ :league_id => @league.id }).last
 
   end
+
 end

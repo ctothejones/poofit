@@ -78,10 +78,12 @@
       <% else %>
         <td><%= link_to "#{matchup.first_team.name}", league_team_path(@league, matchup.first_team) %></td>
       <% end %>
-      <% if matchup.winning_team == @team %>
-        <td>W</td>
-      <% else %>
-        <td>L</td>
+      <% if matchup.winner? %>
+        <% if Team.find(matchup.winner) == @team %>
+          <td>W</td>
+        <% else %>
+          <td>L</td>
+        <% end %>
       <% end %>
         <td>Name + Pic</td>
     </tr>
