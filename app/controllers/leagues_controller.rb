@@ -26,6 +26,8 @@ class LeaguesController < ApplicationController
       end
     end
 
+    @standings = @league.teams.sort {|a,b| b.win_count(@current_season) <=> a.win_count(@current_season)}
+
   end
 
   def edit

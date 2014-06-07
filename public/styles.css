@@ -2,9 +2,22 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 0;
+}
+
 .navbar {
   height: 75px;
   padding: 10px;
+  background-color: #ffffff;
 }
 
 .navbar-brand {
@@ -54,4 +67,7 @@ body{
   float: right;
 }
 
+#not_captain {
+  color: #bdc3c7;
+}
 

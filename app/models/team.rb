@@ -7,4 +7,8 @@ class Team < ActiveRecord::Base
     users.find_by({ :is_captain => true })
   end
 
+  def win_count(season)
+    season.matchups.where({ :winner => id }).count
+  end
+
 end

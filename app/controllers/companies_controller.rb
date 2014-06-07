@@ -17,6 +17,7 @@ class CompaniesController < ApplicationController
 
   def show
     @company = current_user.company
+    @league = League.new
   end
 
   def edit

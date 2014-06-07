@@ -12,7 +12,7 @@
 
       <p class="lead">Standings</p>
       <table class="table table-hover">
-        <% @league.teams.each do |team| %>
+        <% @standings.each do |team| %>
           <tr>
             <td><%= link_to "#{team.name}", league_team_path(@league, team) %></td>
             <td><%= @current_season.matchups.where({ :winner => team.id }).count %></td>

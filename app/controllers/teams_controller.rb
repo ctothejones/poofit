@@ -35,6 +35,36 @@ class TeamsController < ApplicationController
     @teams_matchups_this_season = @matchups_this_season.where({ :first_team_id => @team.id }) + @matchups_this_season.where({ :second_team_id => @team.id })
     @teams_matchups_this_season_in_order = @teams_matchups_this_season.sort_by{ |matchup| matchup[:week_id] }
 
-    @win_count = @current_season.matchups.where({ :winner => @team.id }).count
+    @win_count = @team.win_count(@current_season)
   end
+
+  def edit
+    @league = League.find(params[:league_id])
+    @team = Team.find(params[:id])
+    @team_members = @team.users
+  end
+
+  def update
+    @league = League.find(params[:league_id])
+    @team = Team.find(params[:id])
+    @team.name = params[:team][:name]
+
+    @current_captain = @team.captain
+    @current_captain.is_captain = false
+    @current_captain.save
+
+    @new_captain = User.find(params[:new_captain])
+    @new_captain.is_captain = true
+    @new_captain.save
+
+    @team.save
+
+    if @team.save
+      redirect_to league_team_path(@league, @team), :notice => "Team updated successfully."
+    else
+      render 'edit'
+    end
+  end
+
+
 end

@@ -4,7 +4,14 @@
     <a href="/companies/<%= @company.id %>/edit">Edit</a>
   </div>
   <div class="col-md-4">
-    <a href="/leagues/new"><i class='fa fa-plus'></i>Add a League</a>
+    <%= simple_form_for [@league] do |f| %>
+      <%= f.input :name, :label => 'League Name' %>
+      <%= f.button :submit do
+        <i class='fa fa-plus'></i> "Add a League", :class => "btn btn-success btn-block" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
     <ul>
       <% @company.leagues.each do |league| %>
         <li><%= league.name %></li>
