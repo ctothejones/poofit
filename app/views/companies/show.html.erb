@@ -14,7 +14,7 @@
     </div>
       <% @company.leagues.each do |league| %>
         <div>
-          <%= league.name %>
+          <%= link_to "#{league.name}", league_path(league) %>
           <a data-method="delete" href="/leagues/<%= league.id %>" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
         </div>
       <% end %>
@@ -23,7 +23,7 @@
   <div class="col-md-3 col-md-offset-1">
       <% @company.users.each do |user| %>
         <div>
-          <%= user.name %>
+          <%= link_to "#{user.name}", user_path(user) %>
         </div>
       <% end %>
   </div>
