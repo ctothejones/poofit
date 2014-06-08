@@ -19,6 +19,7 @@ class LeaguesController < ApplicationController
   def show
     @league = League.find(params[:id])
     @company = @league.company
+    @season = Season.new
 
     @league.seasons.each do |season|
       if season.current

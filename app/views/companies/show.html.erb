@@ -1,30 +1,35 @@
 <div class="row">
-  <div class="col-md-4">
+
+  <div class="col-md-3">
     <h1><%= @company.name %></h1>
     <a href="/companies/<%= @company.id %>/edit">Edit</a>
   </div>
-  <div class="col-md-4">
-    <%= simple_form_for [@league] do |f| %>
-      <%= f.input :name, :label => 'League Name' %>
-      <%= f.button :submit do
-        <i class='fa fa-plus'></i> "Add a League", :class => "btn btn-success btn-block" %>
+
+  <div class="col-md-3 col-md-offset-1">
+    <div>
+      <%= simple_form_for [@league] do |f| %>
+        <%= f.input :name, :label => false, :placeholder => 'League Name' %>
+        <%= f.button :submit, "Add a League", :class => "btn btn-primary btn-sm btn-block" %>
       <% end %>
-    <% end %>
-  </div>
-</div>
-    <ul>
+    </div>
       <% @company.leagues.each do |league| %>
-        <li><%= league.name %></li>
+        <div>
+          <%= league.name %>
+          <a href="/" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
+        </div>
       <% end %>
-    </ul>
   </div>
-  <div class="col-md-4">
-    <ul>
+
+  <div class="col-md-3 col-md-offset-1">
       <% @company.users.each do |user| %>
-        <li><%= user.name %></li>
+        <div>
+          <%= user.name %>
+        </div>
       <% end %>
-    </ul>
   </div>
+
 </div>
+
+
 
 

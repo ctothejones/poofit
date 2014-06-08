@@ -1,13 +1,21 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <h1><%= @league.name %></h1><a href="/leagues/<%= @league.id %>/edit">Edit</a>
     <h5><%= @company.name %></h5>
 
-    <%= link_to "<i class='fa fa-plus'></i> Start a new season!".html_safe, "/leagues/#{@league.id}/seasons/new" %>
+    <%= simple_form_for @season do |f| %>
+      <%= f.hidden_field :league_id, :value => "#{@league.id}" %>
+      <!-- insert calendar later -->
+      <%= f.input :start_date, :as => :string, :label => false, :placeholder => "Start Date  yyyy-mm-dd" %>
+      <%= f.button :submit, "Start new Season", :class => "btn btn-primary btn-sm btn-block"%>
+    <% end %>
+
+    <!-- create matchups for most recent season -->
+    <a style="margin-top: 20px" class="btn btn-danger btn-sm btn-block" data-method="post" href="/matchups?league_id=<%= @league.id %>&season_id=<%= @league.seasons.last.id %>" >Admin Only!! Create Matchups</a>
   </div>
 
   <% if @current_season %>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <p class="lead">Season <%= @current_season.number %></p>
 
       <p class="lead">Standings</p>

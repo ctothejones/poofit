@@ -10,6 +10,7 @@ class SeasonsController < ApplicationController
     @season.league_id = params[:season][:league_id]
     @season.start_date = params[:season][:start_date]
     @season.end_date = @season.start_date.advance :weeks => 12
+    @league = League.find(params[:season][:league_id])
     @season.number = @league.seasons.count + 1
 
     @season.save
@@ -28,30 +29,6 @@ class SeasonsController < ApplicationController
       week.save
     end
 
-    ## Creating Matchups - Must happen after teams are set -> DRY up into model later ##
-    @league = League.find(params[:season][:league_id])
-    number_of_teams = @league.teams.count
-    number_of_matchups_per_week = number_of_teams/2
-
-    @season.weeks.each do |week|
-      shuffled_team_ids = @league.team_ids.shuffle
-
-      number_of_matchups_per_week.times do |matchup|
-        matchup = Matchup.new
-        matchup.week_id = week.id
-        matchup.season_id = @season.id
-
-        random_team_1 = shuffled_team_ids.sample
-        matchup.first_team_id = random_team_1
-        shuffled_team_ids = shuffled_team_ids - [random_team_1]
-
-        random_team_2 = shuffled_team_ids.sample
-        matchup.second_team_id = random_team_2
-        shuffled_team_ids = shuffled_team_ids - [random_team_2]
-
-        matchup.save
-      end
-    end
 
     if @season.save
       redirect_to "/leagues/#{@league.id}"
