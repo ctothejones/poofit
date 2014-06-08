@@ -41,9 +41,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
-              <li><%= link_to '<i class="fa fa-building fa-lg"></i> Company'.html_safe, company_path(current_user.company) %></li>
-              <li><%= link_to '<i class="fa fa-trophy fa-lg"></i> League'.html_safe, league_path(current_user.league) %></li>
-              <li><%= link_to '<i class="fa fa-users fa-lg"></i> Team'.html_safe, league_team_path(current_user.league, current_user.team) %></li>
+              <li><%= link_to '<i class="fa fa-trophy fa-2x"></i> League'.html_safe, league_path(current_user.league) %></li>
+              <li><%= link_to '<i class="fa fa-shield fa-2x"></i> Team'.html_safe, league_team_path(current_user.league, current_user.team) %></li>
             <% end %>
           </ul>
 
