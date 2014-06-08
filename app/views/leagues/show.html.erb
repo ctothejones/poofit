@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3">
-    <h1><%= @league.name %></h1><a href="/leagues/<%= @league.id %>/edit">Edit</a>
+    <h1><%= @league.name %></h1><a href="/leagues/<%= @league.id %>/edit"><i class='fa fa-pencil fa-lg'></i></a>
     <h5><%= @company.name %></h5>
 
     <%= simple_form_for @season do |f| %>
@@ -10,8 +10,18 @@
       <%= f.button :submit, "Start new Season", :class => "btn btn-primary btn-sm btn-block"%>
     <% end %>
 
+    <div style="margin-top: 20px">
+      <%= simple_form_for [@league, @team] do |f| %>
+        <%= f.hidden_field :league_id, :value => "#{@league.id}" %>
+        <%= f.hidden_field :name, :value => "Team #{@league.teams.count + 1}" %>
+        <%= f.button :submit, :class => "btn btn-sm btn-success btn-block" %>
+      <% end %>
+    </div>
+
     <!-- create matchups for most recent season -->
-    <a style="margin-top: 20px" class="btn btn-danger btn-sm btn-block" data-method="post" href="/matchups?league_id=<%= @league.id %>&season_id=<%= @league.seasons.last.id %>" >Admin Only!! Create Matchups</a>
+    <% if @league.seasons.present? %>
+      <a style="margin-top: 20px" class="btn btn-danger btn-sm btn-block" data-method="post" href="/matchups?league_id=<%= @league.id %>&season_id=<%= @league.seasons.last.id %>" >Admin Only!! Create Matchups</a>
+    <% end %>
   </div>
 
   <% if @current_season %>

@@ -20,6 +20,7 @@ class LeaguesController < ApplicationController
     @league = League.find(params[:id])
     @company = @league.company
     @season = Season.new
+    @team = Team.new
 
     @league.seasons.each do |season|
       if season.current
@@ -52,6 +53,6 @@ class LeaguesController < ApplicationController
     @league = League.find(params[:id])
     @league.destroy
 
-    redirect_to "/companies/#{@user.company.id}", :notice => "League deleted"
+    redirect_to "/", :notice => "League deleted"
   end
 end

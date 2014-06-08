@@ -2,7 +2,7 @@
 
   <div class="col-md-3">
     <h1><%= @company.name %></h1>
-    <a href="/companies/<%= @company.id %>/edit">Edit</a>
+    <a href="/companies/<%= @company.id %>/edit"><i class='fa fa-pencil fa-lg'></i></a>
   </div>
 
   <div class="col-md-3 col-md-offset-1">
@@ -15,7 +15,7 @@
       <% @company.leagues.each do |league| %>
         <div>
           <%= league.name %>
-          <a href="/" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
+          <a data-method="delete" href="/leagues/<%= league.id %>" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
         </div>
       <% end %>
   </div>

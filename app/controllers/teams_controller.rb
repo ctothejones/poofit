@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
     @team.save
 
     if @team.save
-      redirect_to "/leagues/#{@team.league_id}/teams/#{@team.id}"
+      redirect_to "/leagues/#{@team.league_id}/teams/#{@team.id}", :notice => "Team created successfully!"
     else
       render "new"
     end
@@ -64,6 +64,14 @@ class TeamsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @league = League.find(params[:league_id])
+    @team = Team.find(params[:id])
+    @team.destroy
+
+    redirect_to "/leagues/#{@league.id}", :notice => "Team deleted"
   end
 
 
