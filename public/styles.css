@@ -8,11 +8,11 @@ a:link {
 
 a:hover {
   text-decoration: underline;
-  color: #f7931d;
 }
 
 a:focus {
   outline: 0;
+  background-color: #ffffff;
 }
 
 .navbar {
@@ -36,7 +36,7 @@ a:focus {
 }
 
 body{
-  background-color: #eeeeee;
+  background-color: #ecf0f1;
 }
 
 .card{
@@ -89,5 +89,14 @@ body{
   color: #f7931d;
 }
 
+.btn-delete {
+  color: #e74c3c;
+}
 
+.sf-cloud {
+  color: #2980b9;
+}
 
+.sf-cloud-o {
+  color: #bdc3c7;
+}

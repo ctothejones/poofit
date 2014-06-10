@@ -5,15 +5,10 @@
 <h4>League: <%= link_to "#{@league.name}", "/leagues/#{@team.league.id}" %></h4>
 
 <% if @user == current_user %>
-  <a href="/auth/salesforce">Authenticate with Salesforce</a>
-
-  <% @authentications.each do |authentication| %>
-    <li>
-      <%= authentication.provider %>
-      <%= authentication.user_id %>
-      <%= authentication.uid %>
-      <%= link_to "Destroy", "/authentications/#{authentication.id}", :method => :delete %>
-    </li>
+  <% if current_user.authentications.find_by({ :provider => "salesforce" }) %>
+    <%= link_to "<i class='fa fa-cloud fa-2x sf-cloud'></i> unauthorize Salesforce".html_safe, "/authentications/#{current_user.authentications.find_by({ :provider => "salesforce" }).id }", :method => :delete %>
+  <% else %>
+    <a href="/auth/salesforce"><i class="fa fa-cloud fa-2x sf-cloud-o"></i> authorize Salesforce</a>
   <% end %>
 <% end %>
 

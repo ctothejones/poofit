@@ -9,11 +9,11 @@
       <div class="team-card-losing">
     <% end %>
         <h3>
-          <%= @team.name %>
+          <i class="fa fa-shield"></i> <%= @team.name %>
           <span class="label label-info win-loss"><%= @win_count %></span>
         </h3>
         <%= link_to "<i class='fa fa-pencil fa-lg'></i>".html_safe, edit_league_team_path(@league, @team) %>
-        <a data-method="delete" href="/leagues/<%= @league.id %>/teams/<%= @team.id %>" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
+        <a data-method="delete" href="/leagues/<%= @league.id %>/teams/<%= @team.id %>" class="btn-delete"><i class="fa fa-trash-o fa-lg"></i></a>
         <table class="table table-hover table-condensed">
           <tr>
             <td><i class="fa fa-anchor fa-lg"></i></td>
