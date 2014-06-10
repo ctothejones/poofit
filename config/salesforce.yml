@@ -1,0 +1,11 @@
+development:
+  key: '3MVG9A2kN3Bn17hsGQYKygH1h7LQwcjqw6F5.J0KZFS1k1zud_iNlX9FrGyestmKqd9e81nUuxL4CMvkwNmNR'
+  secret: '6826569154441863819'
+
+test:
+  key: '3MVG9A2kN3Bn17hsGQYKygH1h7LQwcjqw6F5.J0KZFS1k1zud_iNlX9FrGyestmKqd9e81nUuxL4CMvkwNmNR'
+  secret: '6826569154441863819'
+
+production:
+  key: '3MVG9A2kN3Bn17hsGQYKygH1h7LQwcjqw6F5.J0KZFS1k1zud_iNlX9FrGyestmKqd9e81nUuxL4CMvkwNmNR'
+  secret: '6826569154441863819'

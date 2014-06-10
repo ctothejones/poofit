@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+
   def new
     @company = Company.new
   end
@@ -18,6 +19,7 @@ class CompaniesController < ApplicationController
   def show
     @company = current_user.company
     @league = League.new
+
   end
 
   def edit

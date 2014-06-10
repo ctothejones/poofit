@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  match '/auth/:provider/callback' => 'authentications#create', via: [:get, :post]
+
   devise_for :users
 
   devise_scope :user do

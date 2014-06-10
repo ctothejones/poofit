@@ -58,7 +58,7 @@
         <tr>
           <td><%= link_to "#{member.name}", user_path(member) %></td>
           <% if member.is_captain %>
-            <td><i class="fa fa-anchor fa-lg"></i>
+            <td><i class="fa fa-anchor fa-lg" id="captain"></i>
           <% else %>
             <td><a data-method='patch' href="/leagues/<%= @league.id %>/teams/<%= @team.id %>?team[name]=<%= @team.name %>&new_captain=<%= member.id %>"><i class='fa fa-anchor fa-lg' id='not_captain'></a></i></td>
           <% end %>
