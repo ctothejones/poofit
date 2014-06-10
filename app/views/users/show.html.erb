@@ -6,9 +6,10 @@
 
 <% if @user == current_user %>
   <% if current_user.authentications.find_by({ :provider => "salesforce" }) %>
-    <%= link_to "<i class='fa fa-cloud fa-2x sf-cloud'></i> unauthorize Salesforce".html_safe, "/authentications/#{current_user.authentications.find_by({ :provider => "salesforce" }).id }", :method => :delete %>
+    <h5>Signed in with: <%= link_to "<img src='/salesforce_logo.png' width='200px'>".html_safe, "/authentications/#{current_user.authentications.find_by({ :provider => "salesforce" }).id }", :method => :delete %></h5>
   <% else %>
-    <a href="/auth/salesforce"><i class="fa fa-cloud fa-2x sf-cloud-o"></i> authorize Salesforce</a>
+    <h5>Sign in with: <%= link_to "<img src='/salesforce_logo_gray.png' width='200px'>".html_safe, "/auth/salesforce" %></h5>
   <% end %>
 <% end %>
+
 
