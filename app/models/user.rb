@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :authentications
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,6 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :company
   belongs_to :league
   belongs_to :team
+  has_many :authentications
 
   def name
     "#{first_name} #{last_name}"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140608211846) do
+ActiveRecord::Schema.define(version: 20140611022154) do
 
   create_table "activities", force: true do |t|
     t.string  "category"
@@ -77,6 +77,11 @@ ActiveRecord::Schema.define(version: 20140608211846) do
     t.integer  "company_id"
     t.integer  "league_id"
     t.integer  "team_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.string   "refresh_token"
+    t.string   "instance_url"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
