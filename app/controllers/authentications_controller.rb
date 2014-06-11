@@ -9,7 +9,7 @@ class AuthenticationsController < ApplicationController
     current_user.oauth_token = auth.credentials.token
     current_user.refresh_token = auth.credentials.refresh_token
     current_user.instance_url = auth.credentials.instance_url
-    # current_user.sfdc_user_id = auth.extra.user_id
+    current_user.sfdc_user_id = auth.extra.user_id
     current_user.save
 
     redirect_to "/users/#{current_user.id}"

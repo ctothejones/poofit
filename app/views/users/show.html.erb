@@ -1,17 +1,25 @@
-<h3><%= @user.name %></h3>
-<h4><%= @user.title %></h4>
-<h4><%= @user.company.name %></h4>
-<h4>Team: <%= link_to "#{@team.name}", "/teams/#{@user.team.id}" %></h4>
-<h4>League: <%= link_to "#{@league.name}", "/leagues/#{@team.league.id}" %></h4>
+<div class"row">
+  <div class="col-md-3">
+    <h3><%= @user.name %></h3>
+    <h4><%= @user.title %></h4>
+    <h4><%= @user.company.name %></h4>
+    <h4>Team: <%= link_to "#{@team.name}", "/teams/#{@user.team.id}" %></h4>
+    <h4>League: <%= link_to "#{@league.name}", "/leagues/#{@team.league.id}" %></h4>
 
-<% if @user == current_user %>
-  <% if current_user.authentications.find_by({ :provider => "salesforce" }) %>
-    <h5>Signed in with: <%= link_to "<img src='/salesforce_logo.png' width='150px'>".html_safe, "/authentications/#{current_user.authentications.find_by({ :provider => "salesforce" }).id }", :method => :delete %></h5>
-  <% else %>
-    <h5>Sign in with: <%= link_to "<img src='/salesforce_logo_gray.png' width='150px'>".html_safe, "/auth/salesforce" %></h5>
-  <% end %>
-<% end %>
+    <% if @user == current_user %>
+      <% if current_user.authentications.find_by({ :provider => "salesforce" }) %>
+        <h5>Signed in with: <%= link_to "<img src='/salesforce_logo.png' width='150px'>".html_safe, "/authentications/#{current_user.authentications.find_by({ :provider => "salesforce" }).id }", :method => :delete %></h5>
+      <% else %>
+        <h5>Sign in with: <%= link_to "<img src='/salesforce_logo_gray.png' width='150px'>".html_safe, "/auth/salesforce" %></h5>
+      <% end %>
+    <% end %>
+  </div>
 
-<% @accounts.each do |account| %>
-  <li><%= account.Name %></li>
-<% end %>
+  <div class="col-md-9">
+    <% @current_user_accounts.each do |account| %>
+      <li><%= account.Name %></li>
+    <% end %>
+  </div>
+</div>
+
+<%= @current_user_calls.count %>

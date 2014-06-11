@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611022154) do
+ActiveRecord::Schema.define(version: 20140611201812) do
 
   create_table "activities", force: true do |t|
     t.string  "category"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140611022154) do
     t.string   "oauth_token"
     t.string   "refresh_token"
     t.string   "instance_url"
+    t.string   "sfdc_user_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
