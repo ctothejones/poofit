@@ -3,6 +3,8 @@ class Team < ActiveRecord::Base
   has_many :users
   has_many :matchups
 
+  validates :name, presence: true
+
   def captain
     users.find_by({ :is_captain => true })
   end

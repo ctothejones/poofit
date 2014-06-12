@@ -3,6 +3,8 @@ class Season < ActiveRecord::Base
   has_many :weeks
   has_many :matchups, :through => :weeks
 
+  validates :start_date, presence: true
+
 
   def current
     Date.today.between?(start_date, end_date)
