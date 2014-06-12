@@ -16,10 +16,13 @@
   </div>
 
   <div class="col-md-9">
-    <% @current_user_accounts.each do |account| %>
-      <li><%= account.Name %></li>
+    <% if current_user.authentications.find_by({ :provider => "salesforce" }) %>
+      <% @current_user_accounts.each do |account| %>
+        <li><%= account.Name %></li>
+      <% end %>
+      <%= @current_user_calls.count %>
     <% end %>
   </div>
 </div>
 
-<%= @current_user_calls.count %>
+

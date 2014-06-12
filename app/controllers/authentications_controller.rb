@@ -18,6 +18,15 @@ class AuthenticationsController < ApplicationController
   def destroy
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
+
+    # necessary to destroy this data on logout? would rather not if not necessary
+    # current_user.provider = nil
+    # current_user.uid = nil
+    # current_user.oauth_token = nil
+    # current_user.refresh_token = nil
+    # current_user.instance_url = nil
+    # current_user.save
+
     redirect_to "/users/#{current_user.id}"
   end
 
