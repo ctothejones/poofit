@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-3">
     <h1><%= @league.name %></h1><a href="/leagues/<%= @league.id %>/edit"><i class='fa fa-pencil fa-lg'></i></a>
-    <h5><%= link_to "#{@company.name}", company_path(@company) %></h5>
+    <h5>Company: <%= link_to "#{@company.name}", company_path(@company) %></h5>
 
     <%= simple_form_for @season do |f| %>
       <%= f.hidden_field :league_id, :value => "#{@league.id}" %>
