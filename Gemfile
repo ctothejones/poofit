@@ -11,6 +11,7 @@ gem 'thin'
 gem 'restforce'
 gem 'hashie'
 gem 'faraday'
+gem 'seed_dump'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
