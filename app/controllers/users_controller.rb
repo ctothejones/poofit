@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @team = @user.team
     @league = @team.league
 
-    ## model - sfdc_signed_in ##
+    ## model - sfdc_signed_in instead of this if statement ##
     if current_user.authentications.find_by({ :provider => "salesforce" })
       @client = Restforce.new :oauth_token => current_user.oauth_token,
         :refresh_token => current_user.refresh_token,

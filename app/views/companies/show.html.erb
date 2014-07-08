@@ -1,27 +1,28 @@
 <div class="row">
   <div class="col-md-3">
-    <h1><%= @company.name %></h1>
+    <h3><i class="fa fa-building"></i> <%= @company.name %></h3>
     <a href="/companies/<%= @company.id %>/edit"><i class='fa fa-pencil fa-lg'></i></a>
   </div>
 
-  <div class="col-md-3 col-md-offset-1">
-    <div>
+  <div class="col-md-4">
+    <% @company.leagues.each do |league| %>
+        <div class="card">
+          <%= link_to "#{league.name}", league_path(league) %>
+          <a data-method="delete" href="/leagues/<%= league.id %>" class="btn btn-sm btn-delete"><i class="fa fa-trash-o fa-lg"></i></a>
+        </div>
+      <% end %>
+
+    <div class="card">
       <%= simple_form_for [@league] do |f| %>
         <%= f.input :name, :label => false, :placeholder => 'League Name' %>
         <%= f.button :submit, "Add a League", :class => "btn btn-primary btn-sm btn-block" %>
       <% end %>
     </div>
-      <% @company.leagues.each do |league| %>
-        <div>
-          <%= link_to "#{league.name}", league_path(league) %>
-          <a data-method="delete" href="/leagues/<%= league.id %>" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-        </div>
-      <% end %>
   </div>
 
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-4">
       <% @company.users.each do |user| %>
-        <div>
+        <div class="card">
           <%= link_to "#{user.name}", user_path(user) %>
         </div>
       <% end %>
