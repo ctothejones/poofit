@@ -12,10 +12,10 @@
         </div>
       <% end %>
 
-    <div class="card">
+    <div>
       <%= simple_form_for [@league] do |f| %>
-        <%= f.input :name, :label => false, :placeholder => 'League Name' %>
-        <%= f.button :submit, "Add a League", :class => "btn btn-primary btn-sm btn-block" %>
+        <%= f.hidden_field :name, :value => "League #{@company.leagues.count + 1}" %>
+        <%= f.button :submit, "+ New League", :class => "btn btn-sm btn-primary btn-block" %>
       <% end %>
     </div>
   </div>
