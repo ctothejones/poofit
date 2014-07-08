@@ -1,5 +1,15 @@
 <div class"row">
   <div class="col-md-3">
+
+  <div>
+    <img id="user_pic" class="img-circle" src="<%= @user.photo.url %>">
+  </div>
+
+    <%= simple_form_for @user, :html => {:multipart => true}  do |f| %>
+      <%= f.file_field :photo %>
+      <%= f.button :submit, "Change Photo", :class => "btn btn-sm btn-primary" %>
+    <% end %>
+
     <h3><%= @user.name %></h3>
     <h4><%= @user.title %></h4>
     <h4>Company: <%= link_to "#{@user.company.name}", company_path(@user.company) %></h4>

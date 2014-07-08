@@ -12,6 +12,7 @@ gem 'restforce'
 gem 'hashie'
 gem 'faraday'
 gem 'seed_dump'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -24,4 +24,13 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def update
+
+    ##Had to do with update attribute for paperclip, but may have to change around when adding edit for rest of user model - may have something to do with strong parameters##
+    @user = User.find(params[:id])
+    @user.update_attribute(:photo, params[:user][:photo])
+
+    redirect_to "/users/#{@user.id}"
+  end
 end

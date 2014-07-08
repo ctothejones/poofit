@@ -10,6 +10,13 @@ class User < ActiveRecord::Base
   belongs_to :team
   has_many :authentications
 
+  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+    :url  => "/assets/users/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension"
+
+  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+
+
   def name
     "#{first_name} #{last_name}"
   end
